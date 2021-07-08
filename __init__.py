@@ -22,6 +22,7 @@ def encrypt_page():
     token = f.encrypt(bytes(string, 'utf-8'))
     return render_template('index.html', crypt='Enrypted', string=token)
 
+# Take token using the request form and decrypt
 
 @app.route('/decrypt/', methods=('GET', 'POST'))
 def decrypt_page():
