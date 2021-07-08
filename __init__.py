@@ -23,5 +23,18 @@ def encrypt_page():
     return render_template('index.html', crypt='Enrypted', string=token)
 
 
+@app.route('/decrypt/', methods=('GET', 'POST'))
+def decrypt_page():
+
+    if request.method == 'GET':
+        return '<form method="POST"> <input name="string"> <input type="submit"></form>'
+
+    string = request.form.get('string', 'none')
+    if not string:
+        return "None"
+    token = f.decrypt(bytes(string, 'utf-8'))
+    return render_template('index.html', crypt='Derypted', string=token)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
