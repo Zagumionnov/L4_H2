@@ -16,7 +16,9 @@ def encrypt_page():
     if request.method == 'GET':
         return '<form method="POST"> <input name="string"> <input type="submit"></form>'
 
-    string = request.form['string']
+    string = request.form.get('string', 'none')
+    if not string:
+        return "None"
     token = f.encrypt(bytes(string, 'utf-8'))
     return render_template('index.html', crypt='Enrypted', string=token)
 
